@@ -1,0 +1,8 @@
+{
+    "name": "Minhas Despesas",
+    "short_name": "Despesas",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#f2f2f2",
+    "theme_color": "#000000"
+}

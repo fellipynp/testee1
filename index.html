@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minhas Despesas</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <h1>Minhas Despesas</h1>
+
+        <div class="total">
+            <p>Total gasto</p>
+            <h2 id="total">R$ 0,00</h2>
+        </div>
+
+        <input
+            type="text"
+            id="nome"
+            placeholder="Nome da despesa"
+        >
+
+        <input
+            type="number"
+            id="valor"
+            placeholder="Valor"
+            step="0.01"
+        >
+
+        <button onclick="adicionarDespesa()">
+            Adicionar despesa
+        </button>
+
+        <div id="lista"></div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js");
+        }
+    </script>
+
+</body>
+</html>
