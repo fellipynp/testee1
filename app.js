@@ -6,7 +6,7 @@ function adicionarDespesa() {
     const data = document.getElementById("data").value;
 
     if (nome === "" || valor <= 0 || isNaN(valor)) {
-        alert("Digite o nome e um valor válido.");
+        alert("Digite o nome e um valor valido.");
         return;
     }
 
@@ -32,31 +32,35 @@ function mostrarDespesas() {
 
     let total = 0;
 
-    despesas.forEach((despesa, index) => {
+    despesas.forEach(function(despesa, index) {
         total += despesa.valor;
 
         const item = document.createElement("div");
 
         item.className = "despesa";
 
+        let dataHTML = "";
+
+        if (despesa.data) {
+            dataHTML = `
+                <span class="data-despesa">
+                    ${formatarData(despesa.data)}
+                </span>
+            `;
+        }
+
         item.innerHTML = `
             <div class="info-despesa">
 
-               ${
-    despesa.data
-        ? `<span class="data-despesa">
-            ${formatarData(despesa.data)}
-           </span>`
-        : ""
-}
+                ${dataHTML}
 
-<strong class="nome-despesa">
-    ${despesa.nome}
-</strong>
+                <strong class="nome-despesa">
+                    ${despesa.nome}
+                </strong>
 
-<strong class="valor-despesa">
-    R$ ${despesa.valor.toFixed(2)}
-</strong>
+                <strong class="valor-despesa">
+                    R$ ${despesa.valor.toFixed(2)}
+                </strong>
 
             </div>
 
@@ -77,7 +81,7 @@ function mostrarDespesas() {
     });
 
     document.getElementById("total").innerText =
-        `R$ ${total.toFixed(2)}`;
+        "R$ " + total.toFixed(2);
 }
 
 function editarDespesa(index) {
@@ -105,8 +109,8 @@ function editarDespesa(index) {
         novoValor.replace(",", ".")
     );
 
-    if (valor <= 0 || isNaN(valor)) {
-        alert("Valor inválido.");
+    if (isNaN(valor) || valor <= 0) {
+        alert("Valor invalido.");
         return;
     }
 
@@ -156,7 +160,7 @@ function formatarData(data) {
 
     const partes = data.split("-");
 
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    return partes[2] + "/" + partes[1] + "/" + partes[0];
 }
 
 function alternarTema() {
