@@ -48,10 +48,10 @@ function mostrarDespesas() {
 
                 ${
                     despesa.data
-                    ? `<span class="data-despesa">
-                        ${formatarData(despesa.data)}
-                       </span>`
-                    : ""
+                        ? `<span class="data-despesa">
+                            ${formatarData(despesa.data)}
+                           </span>`
+                        : ""
                 }
 
                 <strong class="valor-despesa">
