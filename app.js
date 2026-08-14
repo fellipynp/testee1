@@ -4,7 +4,8 @@ function adicionarDespesa() {
 
     const nome = document.getElementById("nome").value;
     const valor = Number(document.getElementById("valor").value);
-
+    const data = document.getElementById("data").value;
+    
     if (nome === "" || valor <= 0) {
         alert("Digite o nome e um valor válido.");
         return;
