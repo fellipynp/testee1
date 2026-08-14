@@ -132,3 +132,9 @@ body.dark button {
     align-items: center;
     gap: 5px;
 }
+
+.despesa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
