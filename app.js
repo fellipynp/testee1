@@ -7,7 +7,7 @@ function adicionarDespesa() {
     const data = document.getElementById("data").value;
     
     if (nome === "" || valor <= 0) {
-        alert("Digite o nome e um valor válido e data.");
+        alert("Digite o nome e um valor válido.");
         return;
     }
 
