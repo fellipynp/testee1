@@ -80,8 +80,6 @@ function mostrarDespesas() {
         `R$ ${total.toFixed(2)}`;
 }
 
-#######
-
 function editarDespesa(index) {
     const despesa = despesas[index];
 
