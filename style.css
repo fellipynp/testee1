@@ -58,3 +58,38 @@ button {
     display: flex;
     justify-content: space-between;
 }
+
+/* Botão de modo escuro */
+
+#tema {
+    margin-bottom: 20px;
+    background: #333;
+}
+
+/* Modo escuro */
+
+body.dark {
+    background: #121212;
+    color: white;
+}
+
+body.dark .total,
+body.dark .despesa {
+    background: #1e1e1e;
+    color: white;
+}
+
+body.dark input {
+    background: #1e1e1e;
+    color: white;
+    border-color: #444;
+}
+
+body.dark input::placeholder {
+    color: #aaa;
+}
+
+body.dark button {
+    background: #444;
+    color: white;
+}
