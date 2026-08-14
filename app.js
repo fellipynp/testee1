@@ -42,21 +42,21 @@ function mostrarDespesas() {
         item.innerHTML = `
             <div class="info-despesa">
 
-                <strong class="nome-despesa">
-                    ${despesa.nome}
-                </strong>
+               ${
+    despesa.data
+        ? `<span class="data-despesa">
+            ${formatarData(despesa.data)}
+           </span>`
+        : ""
+}
 
-                ${
-                    despesa.data
-                        ? `<span class="data-despesa">
-                            ${formatarData(despesa.data)}
-                           </span>`
-                        : ""
-                }
+<strong class="nome-despesa">
+    ${despesa.nome}
+</strong>
 
-                <strong class="valor-despesa">
-                    R$ ${despesa.valor.toFixed(2)}
-                </strong>
+<strong class="valor-despesa">
+    R$ ${despesa.valor.toFixed(2)}
+</strong>
 
             </div>
 
