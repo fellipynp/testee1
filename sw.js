@@ -1,4 +1,4 @@
-const CACHE_NAME = "despesas-v13";
+const CACHE_NAME = "despesas-v14";
 
 const ARQUIVOS = [
     "./",
@@ -27,17 +27,28 @@ self.addEventListener("activate", event => {
                     }
                 })
             );
+        }).then(() => {
+            return self.clients.claim();
         })
     );
-
-    self.clients.claim();
 });
 
 self.addEventListener("fetch", event => {
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then(resposta => {
-                return resposta || fetch(event.request);
+
+                const copia = resposta.clone();
+
+                caches.open(CACHE_NAME)
+                    .then(cache => {
+                        cache.put(event.request, copia);
+                    });
+
+                return resposta;
+            })
+            .catch(() => {
+                return caches.match(event.request);
             })
     );
 });
