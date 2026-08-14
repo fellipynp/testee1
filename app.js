@@ -1,20 +1,19 @@
 let despesas = JSON.parse(localStorage.getItem("despesas")) || [];
 
 function adicionarDespesa() {
-
-    const nome = document.getElementById("nome").value;
+    const nome = document.getElementById("nome").value.trim();
     const valor = Number(document.getElementById("valor").value);
     const data = document.getElementById("data").value;
-    
-    if (nome === "" || valor <= 0) {
+
+    if (nome === "" || valor <= 0 || isNaN(valor)) {
         alert("Digite o nome e um valor válido.");
         return;
     }
 
     despesas.push({
         nome: nome,
-        valor: valor
-###     data: data               
+        valor: valor,
+        data: data
     });
 
     salvar();
@@ -27,7 +26,6 @@ function adicionarDespesa() {
 }
 
 function mostrarDespesas() {
-
     const lista = document.getElementById("lista");
 
     lista.innerHTML = "";
@@ -35,46 +33,54 @@ function mostrarDespesas() {
     let total = 0;
 
     despesas.forEach((despesa, index) => {
-
         total += despesa.valor;
 
         const item = document.createElement("div");
 
         item.className = "despesa";
 
-  item.innerHTML = `
-    <div class="info-despesa">
+        item.innerHTML = `
+            <div class="info-despesa">
 
-        <strong class="nome-despesa">
-            ${despesa.nome}
-        </strong>
+                <strong class="nome-despesa">
+                    ${despesa.nome}
+                </strong>
 
-        <span class="data-despesa">
-            ${formatarData(despesa.data)}
-        </span>
+                ${
+                    despesa.data
+                    ? `<span class="data-despesa">
+                        ${formatarData(despesa.data)}
+                       </span>`
+                    : ""
+                }
 
-        <strong class="valor-despesa">
-            R$ ${despesa.valor.toFixed(2)}
-        </strong>
+                <strong class="valor-despesa">
+                    R$ ${despesa.valor.toFixed(2)}
+                </strong>
 
-    </div>
+            </div>
 
-    <div class="acoes">
-        <button onclick="editarDespesa(${index})">
-            ✏️
-        </button>
+            <div class="acoes">
 
-        <button onclick="excluirDespesa(${index})">
-            🗑️
-        </button>
-    </div>
-`;
+                <button onclick="editarDespesa(${index})">
+                    ✏️
+                </button>
+
+                <button onclick="excluirDespesa(${index})">
+                    🗑️
+                </button>
+
+            </div>
+        `;
+
+        lista.appendChild(item);
+    });
+
     document.getElementById("total").innerText =
         `R$ ${total.toFixed(2)}`;
 }
 
 function editarDespesa(index) {
-
     const despesa = despesas[index];
 
     const novoNome = prompt(
@@ -104,7 +110,7 @@ function editarDespesa(index) {
         return;
     }
 
-    despesas[index].nome = novoNome;
+    despesas[index].nome = novoNome.trim();
     despesas[index].valor = valor;
 
     salvar();
@@ -112,7 +118,6 @@ function editarDespesa(index) {
 }
 
 function excluirDespesa(index) {
-
     const confirmar = confirm(
         "Tem certeza que deseja excluir esta despesa?"
     );
@@ -128,15 +133,23 @@ function excluirDespesa(index) {
 }
 
 function salvar() {
-
     localStorage.setItem(
         "despesas",
         JSON.stringify(despesas)
     );
 }
 
-function alternarTema() {
+function formatarData(data) {
+    if (!data) {
+        return "";
+    }
 
+    const partes = data.split("-");
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function alternarTema() {
     document.body.classList.toggle("dark");
 
     const estaEscuro =
@@ -151,8 +164,11 @@ function alternarTema() {
 }
 
 function atualizarBotaoTema() {
-
     const botao = document.getElementById("tema");
+
+    if (!botao) {
+        return;
+    }
 
     if (document.body.classList.contains("dark")) {
         botao.innerText = "☀️ Modo claro";
@@ -167,14 +183,3 @@ if (localStorage.getItem("modoEscuro") === "true") {
 
 mostrarDespesas();
 atualizarBotaoTema();
-
-    function formatarData(data) {
-
-    if (!data) {
-        return "";
-    }
-
-    const partes = data.split("-");
-
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
-}
