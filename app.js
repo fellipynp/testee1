@@ -80,6 +80,8 @@ function mostrarDespesas() {
         `R$ ${total.toFixed(2)}`;
 }
 
+#######
+
 function editarDespesa(index) {
     const despesa = despesas[index];
 
@@ -110,8 +112,18 @@ function editarDespesa(index) {
         return;
     }
 
+    const novaData = prompt(
+        "Data (AAAA-MM-DD) ou deixe vazio:",
+        despesa.data || ""
+    );
+
+    if (novaData === null) {
+        return;
+    }
+
     despesas[index].nome = novoNome.trim();
     despesas[index].valor = valor;
+    despesas[index].data = novaData.trim();
 
     salvar();
     mostrarDespesas();
