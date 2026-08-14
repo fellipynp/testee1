@@ -42,27 +42,33 @@ function mostrarDespesas() {
 
         item.className = "despesa";
 
-        item.innerHTML = `
-            <div>
-                <strong>${despesa.nome}</strong>
-                <br>
-                R$ ${despesa.valor.toFixed(2)}
-            </div>
+  item.innerHTML = `
+    <div class="info-despesa">
 
-            <div>
-                <button onclick="editarDespesa(${index})">
-                    ✏️
-                </button>
+        <strong class="nome-despesa">
+            ${despesa.nome}
+        </strong>
 
-                <button onclick="excluirDespesa(${index})">
-                    🗑️
-                </button>
-            </div>
-        `;
+        <span class="data-despesa">
+            ${formatarData(despesa.data)}
+        </span>
 
-        lista.appendChild(item);
-    });
+        <strong class="valor-despesa">
+            R$ ${despesa.valor.toFixed(2)}
+        </strong>
 
+    </div>
+
+    <div class="acoes">
+        <button onclick="editarDespesa(${index})">
+            ✏️
+        </button>
+
+        <button onclick="excluirDespesa(${index})">
+            🗑️
+        </button>
+    </div>
+`;
     document.getElementById("total").innerText =
         `R$ ${total.toFixed(2)}`;
 }
