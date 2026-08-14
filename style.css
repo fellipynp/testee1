@@ -106,48 +106,49 @@ body.dark button {
 ####
 
 
-
 .despesa {
-    display: flex !important;
-    flex-direction: row !important;
+    background: white;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .info-despesa {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
     flex: 1;
-}
-
-.nome-despesa,
-.data-despesa,
-.valor-despesa {
-    display: block !important;
-    width: 100%;
+    min-width: 0;
 }
 
 .nome-despesa {
     font-size: 19px;
+    display: block;
 }
 
 .data-despesa {
     font-size: 14px;
     color: #777;
+    display: block;
 }
 
 .valor-despesa {
     font-size: 18px;
+    display: block;
 }
 
 .acoes {
-    display: flex !important;
-    flex-direction: row !important;
+    display: flex;
+    flex-direction: row;
     gap: 5px;
     margin-left: 10px;
+}
+
+.acoes button {
+    width: auto;
+    padding: 8px;
 }
