@@ -7,19 +7,21 @@ function adicionarDespesa() {
     const data = document.getElementById("data").value;
     
     if (nome === "" || valor <= 0) {
-        alert("Digite o nome e um valor válido.");
+        alert("Digite o nome e um valor válido e data.");
         return;
     }
 
     despesas.push({
         nome: nome,
         valor: valor
+###     data: data               
     });
 
     salvar();
 
     document.getElementById("nome").value = "";
     document.getElementById("valor").value = "";
+    document.getElementById("data").value = "";
 
     mostrarDespesas();
 }
