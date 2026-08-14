@@ -51,6 +51,16 @@ input[type="date"] {
     min-height: 50px;        
 }
 
+#######
+input[type="date"]::-webkit-date-and-time-value {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin: 0;
+}
 
 button {
     width: 100%;
