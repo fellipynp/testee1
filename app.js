@@ -23,10 +23,6 @@ function adicionarDespesa() {
     mostrarDespesas();
 }
 
-function salvar() {
-    localStorage.setItem("despesas", JSON.stringify(despesas));
-}
-
 function mostrarDespesas() {
 
     const lista = document.getElementById("lista");
@@ -44,8 +40,21 @@ function mostrarDespesas() {
         item.className = "despesa";
 
         item.innerHTML = `
-            <span>${despesa.nome}</span>
-            <strong>R$ ${despesa.valor.toFixed(2)}</strong>
+            <div>
+                <strong>${despesa.nome}</strong>
+                <br>
+                R$ ${despesa.valor.toFixed(2)}
+            </div>
+
+            <div>
+                <button onclick="editarDespesa(${index})">
+                    ✏️
+                </button>
+
+                <button onclick="excluirDespesa(${index})">
+                    🗑️
+                </button>
+            </div>
         `;
 
         lista.appendChild(item);
@@ -55,4 +64,97 @@ function mostrarDespesas() {
         `R$ ${total.toFixed(2)}`;
 }
 
+function editarDespesa(index) {
+
+    const despesa = despesas[index];
+
+    const novoNome = prompt(
+        "Nome da despesa:",
+        despesa.nome
+    );
+
+    if (novoNome === null || novoNome.trim() === "") {
+        return;
+    }
+
+    const novoValor = prompt(
+        "Valor da despesa:",
+        despesa.valor
+    );
+
+    if (novoValor === null) {
+        return;
+    }
+
+    const valor = Number(
+        novoValor.replace(",", ".")
+    );
+
+    if (valor <= 0 || isNaN(valor)) {
+        alert("Valor inválido.");
+        return;
+    }
+
+    despesas[index].nome = novoNome;
+    despesas[index].valor = valor;
+
+    salvar();
+    mostrarDespesas();
+}
+
+function excluirDespesa(index) {
+
+    const confirmar = confirm(
+        "Tem certeza que deseja excluir esta despesa?"
+    );
+
+    if (!confirmar) {
+        return;
+    }
+
+    despesas.splice(index, 1);
+
+    salvar();
+    mostrarDespesas();
+}
+
+function salvar() {
+
+    localStorage.setItem(
+        "despesas",
+        JSON.stringify(despesas)
+    );
+}
+
+function alternarTema() {
+
+    document.body.classList.toggle("dark");
+
+    const estaEscuro =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "modoEscuro",
+        estaEscuro
+    );
+
+    atualizarBotaoTema();
+}
+
+function atualizarBotaoTema() {
+
+    const botao = document.getElementById("tema");
+
+    if (document.body.classList.contains("dark")) {
+        botao.innerText = "☀️ Modo claro";
+    } else {
+        botao.innerText = "🌙 Modo escuro";
+    }
+}
+
+if (localStorage.getItem("modoEscuro") === "true") {
+    document.body.classList.add("dark");
+}
+
 mostrarDespesas();
+atualizarBotaoTema();
