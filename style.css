@@ -161,12 +161,9 @@ body.dark button {
 
 @media (max-width: 600px) {
     input[type="date"] {
-        width: calc(100% - 1px);
-        max-width: calc(100% - 1px);
-        min-width: 0;
-        box-sizing: border-box;
         -webkit-appearance: none;
         appearance: none;
-        display: block;
+        width: 100%;
+        max-width: 100%;
     }
 }
