@@ -93,3 +93,32 @@ body.dark button {
     background: #444;
     color: white;
 }
+
+
+####
+
+
+.info-despesa {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nome-despesa {
+    font-size: 19px;
+}
+
+.valor-despesa {
+    font-size: 18px;
+}
+
+.data-despesa {
+    font-size: 14px;
+    color: #777;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
