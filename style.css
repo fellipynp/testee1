@@ -164,7 +164,9 @@ body.dark button {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        box-sizing: border-box;
         -webkit-appearance: none;
         appearance: none;
+        display: block;
     }
 }
