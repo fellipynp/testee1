@@ -46,6 +46,9 @@ input[type="date"] {
     box-sizing: border-box;
     font-size: 16px;
     display: block;
+      -webkit-appearance: none; 
+    appearance: none;
+    min-height: 50px;        
 }
 
 
