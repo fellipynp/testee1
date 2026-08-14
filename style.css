@@ -161,8 +161,8 @@ body.dark button {
 
 @media (max-width: 600px) {
     input[type="date"] {
-        width: 100%;
-        max-width: 100%;
+        width: calc(100% - 1px);
+        max-width: calc(100% - 1px);
         min-width: 0;
         box-sizing: border-box;
         -webkit-appearance: none;
