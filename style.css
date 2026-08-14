@@ -154,3 +154,17 @@ body.dark button {
     width: auto;
     padding: 8px;
 }
+
+
+
+###
+
+@media (max-width: 600px) {
+    input[type="date"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
